@@ -30,6 +30,25 @@ app.post("/api/notes", (req, res) => {
     res.json(notes);
 });
 
+// Delete notes
+app.delete("/api/notes/:id", (req, res) => {
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    const delNote = notes.filter((rmvNote) => rmvNote.id !== req.params.id);
+    fs.writeFileSync("./db/db.json", JSON.stringify(delNote));
+    res.json(delNote);
+});
+
+
+
+// Calls note taker home page
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+// Call for note taker page
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
+});
+
 // Commence listening
 app.listen(PORT, () => {
     console.log(`API server now on PORT: ${PORT}!`);
