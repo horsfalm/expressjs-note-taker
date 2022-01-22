@@ -32,4 +32,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Questions
 
-Repository location is [GitHub](https://github.com/horsfalm/expressjs-note-taker).
+Email horsfalm@gmail.com. Repository location is [GitHub](https://github.com/horsfalm/expressjs-note-taker).
