@@ -17,7 +17,7 @@ List of notes deployed on Heroku.
 
 ## Mockup
 
-![Mockup](mark-up.jpg)
+
 
 ## License
 
