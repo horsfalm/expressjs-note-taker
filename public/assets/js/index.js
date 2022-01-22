@@ -1,8 +1,8 @@
-const $noteTitle = $(".note-title");
-const $noteText = $(".note-textarea");
-const $saveNoteBtn = $(".save-note");
-const $newNoteBtn = $(".new-note");
-const $noteList = $(".list-container .list-group");
+const noteTitle = $(".note-title");
+const noteText = $(".note-textarea");
+const saveNoteBtn = $(".save-note");
+const newNoteBtn = $(".new-note");
+const noteList = $(".list-container .list-group");
 
 // Note in the textarea
 let activeNote = {};
@@ -34,26 +34,26 @@ const deleteNote = (id) => {
 
 // Display activeNote
 const renderActiveNote = () => {
-  $saveNoteBtn.hide();
+  saveNoteBtn.hide();
 
   if (activeNote.id) {
-    $noteTitle.attr("readonly", true);
-    $noteText.attr("readonly", true);
-    $noteTitle.val(activeNote.title);
-    $noteText.val(activeNote.text);
+    noteTitle.attr("readonly", true);
+    noteText.attr("readonly", true);
+    noteTitle.val(activeNote.title);
+    noteText.val(activeNote.text);
   } else {
-    $noteTitle.attr("readonly", false);
-    $noteText.attr("readonly", false);
-    $noteTitle.val("");
-    $noteText.val("");
+    noteTitle.attr("readonly", false);
+    noteText.attr("readonly", false);
+    noteTitle.val("");
+    noteText.val("");
   }
 };
 
 // Save note data and update the rendering
 const handleNoteSave = function () {
   const newNote = {
-    title: $noteTitle.val(),
-    text: $noteText.val(),
+    title: noteTitle.val(),
+    text: noteText.val(),
   };
 
   saveNote(newNote).then(() => {
@@ -92,16 +92,16 @@ const handleNewNoteView = function () {
 
 // Hide the save button until content filled
 const handleRenderSaveBtn = function () {
-  if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
-    $saveNoteBtn.hide();
+  if (!noteTitle.val().trim() || !noteText.val().trim()) {
+    saveNoteBtn.hide();
   } else {
-    $saveNoteBtn.show();
+    saveNoteBtn.show();
   }
 };
 
 // Show's saved notes 
 const renderNoteList = (notes) => {
-  $noteList.empty();
+  noteList.empty();
 
   const noteListItems = [];
 
@@ -130,7 +130,7 @@ const renderNoteList = (notes) => {
     noteListItems.push($li);
   });
 
-  $noteList.append(noteListItems);
+  noteList.append(noteListItems);
 };
 
 // Gets notes and renders them to the side
@@ -138,12 +138,12 @@ const getAndRenderNotes = () => {
   return getNotes().then(renderNoteList);
 };
 
-$saveNoteBtn.on("click", handleNoteSave);
-$noteList.on("click", ".list-group-item", handleNoteView);
-$newNoteBtn.on("click", handleNewNoteView);
-$noteList.on("click", ".delete-note", handleNoteDelete);
-$noteTitle.on("keyup", handleRenderSaveBtn);
-$noteText.on("keyup", handleRenderSaveBtn);
+saveNoteBtn.on("click", handleNoteSave);
+noteList.on("click", ".list-group-item", handleNoteView);
+newNoteBtn.on("click", handleNewNoteView);
+noteList.on("click", ".delete-note", handleNoteDelete);
+noteTitle.on("keyup", handleRenderSaveBtn);
+noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the list of notes
 getAndRenderNotes();
